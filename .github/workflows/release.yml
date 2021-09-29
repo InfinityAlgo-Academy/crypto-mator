@@ -32,7 +32,7 @@ jobs:
       matrix:
         include:
         - os: ubuntu-latest
-          profile: linux
+          profile: linux,linux-arm64
         - os: windows-latest
           profile: win
         - os: macos-latest
