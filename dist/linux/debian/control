@@ -9,7 +9,7 @@ Vcs-Git: https://github.com/cryptomator/cryptomator.git
 Vcs-browser: https://github.com/cryptomator/cryptomator
 
 Package: cryptomator
-Architecture: any
+Architecture: amd64, arm64
 Section: utils
 Priority: optional
 Depends: ${shlibs:Depends}, ${misc:Depends}, libfuse2, xdg-utils, libjffi-jni
