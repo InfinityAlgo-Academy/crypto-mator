@@ -1,0 +1,32 @@
+name: Test get-verion workflow
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        required: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  get-version:
+    uses: ./.github/workflows/get-version.yml
+    with:
+      version: ${{ inputs.version }}
+
+  check-output:
+    name: Test output by get-version
+    runs-on: ubuntu-latest
+    needs: [get-version]
+    steps:
+      - name: Lists output of get-version
+        run: |
+          echo ${{ needs.get-version.outputs.semVerStr }}
+          echo ${{ needs.get-version.outputs.semVerNum }}
+          echo ${{ needs.get-version.outputs.revNum }}
+          echo ${{ needs.get-version.outputs.versionType }}
