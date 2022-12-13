@@ -6,9 +6,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-			xmlns:fx="http://javafx.com/fxml"
-			fx:controller="org.cryptomator.ui.cipherpathgetter.CipherPathGetterController"
-			prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx"
+	  xmlns:fx="http://javafx.com/fxml"
+	  fx:controller="org.cryptomator.ui.cipherpathgetter.CipherPathGetterController"
+	  minWidth="400"
+	  maxWidth="400"
+	  minHeight="145"
+	  spacing="12"
+	  alignment="TOP_LEFT">
+	<padding>
+		<Insets topRightBottomLeft="12"/>
+	</padding>
+	<children>
+		<Label text="Enter Path:"/>
+		<TextField fx:id="cleartextPath"/>
+		<Button text="Compute!" onAction="#decrypt"/>
+		<Label text="Result"/>
+		<TextField fx:id="ciphertextPath" editable="false"/>
+	</children>
+</VBox>

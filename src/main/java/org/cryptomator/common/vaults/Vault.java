@@ -193,6 +193,15 @@ public class Vault {
 		volume.reveal(vaultRevealer);
 	}
 
+	public Path getCiphertextPath(String s) throws IOException {
+		if(state.getValue() != VaultState.Value.UNLOCKED) {
+			throw new IllegalStateException("Vault needs to be unlocked");
+		}
+		var fs = cryptoFileSystem.get();
+		var cryptoFsPath = fs.getPath(s);
+		return cryptoFileSystem.get().getDataCiphertextPath(cryptoFsPath);
+	}
+
 	// ******************************************************************************
 	// Observable Properties
 	// *******************************************************************************
