@@ -32,6 +32,11 @@
 			<FontAwesome5IconView glyph="KEY"/>
 		</graphic>
 	</Button>
+	<Button text="Get Encrypted Path" onAction="#showCipherPathGetter">
+		<graphic>
+			<FontAwesome5IconView glyph="SEARCH"/>
+		</graphic>
+	</Button>
 
 	<Region VBox.vgrow="ALWAYS"/>
 

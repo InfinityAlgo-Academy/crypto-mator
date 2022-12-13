@@ -4,6 +4,7 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import org.cryptomator.common.vaults.Vault;
+import org.cryptomator.ui.cipherpathgetter.CipherPathGetterComponent;
 import org.cryptomator.ui.common.FxController;
 import org.cryptomator.ui.common.VaultService;
 import org.cryptomator.ui.fxapp.FxApplicationWindows;
@@ -21,15 +22,17 @@ public class VaultDetailUnlockedController implements FxController {
 	private final ReadOnlyObjectProperty<Vault> vault;
 	private final FxApplicationWindows appWindows;
 	private final VaultService vaultService;
+	private final CipherPathGetterComponent.Factory cipherPathGetterFactory;
 	private final Stage mainWindow;
 	private final LoadingCache<Vault, VaultStatisticsComponent> vaultStats;
 	private final VaultStatisticsComponent.Builder vaultStatsBuilder;
 
 	@Inject
-	public VaultDetailUnlockedController(ObjectProperty<Vault> vault, FxApplicationWindows appWindows, VaultService vaultService, VaultStatisticsComponent.Builder vaultStatsBuilder, @MainWindow Stage mainWindow) {
+	public VaultDetailUnlockedController(ObjectProperty<Vault> vault, FxApplicationWindows appWindows, VaultService vaultService, VaultStatisticsComponent.Builder vaultStatsBuilder, CipherPathGetterComponent.Factory cipherPathGetterFactory, @MainWindow Stage mainWindow) {
 		this.vault = vault;
 		this.appWindows = appWindows;
 		this.vaultService = vaultService;
+		this.cipherPathGetterFactory = cipherPathGetterFactory;
 		this.mainWindow = mainWindow;
 		this.vaultStats = CacheBuilder.newBuilder().weakValues().build(CacheLoader.from(this::buildVaultStats));
 		this.vaultStatsBuilder = vaultStatsBuilder;
@@ -64,4 +67,7 @@ public class VaultDetailUnlockedController implements FxController {
 		return vault.get();
 	}
 
+	public void showCipherPathGetter() {
+		cipherPathGetterFactory.create(vault.get(),mainWindow).showCipherPathGetterWindow();
+	}
 }

@@ -23,6 +23,7 @@ public interface CipherPathGetterComponent {
 
 	default void showCipherPathGetterWindow() {
 		Stage stage = window();
+		stage.setScene(cipherPathGetterScene().get());
 		stage.sizeToScene();
 		stage.show();
 	}
