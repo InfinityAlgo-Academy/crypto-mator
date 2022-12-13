@@ -9,6 +9,7 @@ public enum FxmlFile {
 	ADDVAULT_SUCCESS("/fxml/addvault_success.fxml"), //
 	ADDVAULT_WELCOME("/fxml/addvault_welcome.fxml"), //
 	CHANGEPASSWORD("/fxml/changepassword.fxml"), //
+	CIPHERPATHGETTER("/fxml/cipherpathgetter.fxml"), //
 	ERROR("/fxml/error.fxml"), //
 	FORGET_PASSWORD("/fxml/forget_password.fxml"), //
 	HEALTH_START("/fxml/health_start.fxml"), //
