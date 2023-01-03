@@ -29,7 +29,6 @@ public class SettingsJsonAdapterTest {
 					],
 					"autoCloseVaults" : true,
 					"checkForUpdatesEnabled": true,
-					"port": 8080,
 					"language": "de-DE",
 					"numTrayNotifications": 42
 				}
@@ -39,7 +38,6 @@ public class SettingsJsonAdapterTest {
 
 		Assertions.assertTrue(settings.checkForUpdates().get());
 		Assertions.assertEquals(2, settings.getDirectories().size());
-		Assertions.assertEquals(8080, settings.port().get());
 		Assertions.assertEquals(true, settings.autoCloseVaults().get());
 		Assertions.assertEquals("de-DE", settings.languageProperty().get());
 		Assertions.assertEquals(42, settings.numTrayNotifications().get());

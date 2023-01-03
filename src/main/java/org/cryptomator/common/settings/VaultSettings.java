@@ -52,6 +52,8 @@ public class VaultSettings {
 	private final IntegerProperty autoLockIdleSeconds = new SimpleIntegerProperty(DEFAULT_AUTOLOCK_IDLE_SECONDS);
 	private final StringExpression mountName;
 	private final ObjectProperty<Path> mountPoint = new SimpleObjectProperty<>();
+	private final SimpleStringProperty desiredMountService = new SimpleStringProperty();
+	private final SimpleStringProperty displayNameOfDesiredMountService = new SimpleStringProperty();
 
 	public VaultSettings(String id) {
 		this.id = Objects.requireNonNull(id);
@@ -99,6 +101,14 @@ public class VaultSettings {
 		return id;
 	}
 
+	public String getDesiredMountService() {
+		return desiredMountService.getValue();
+	}
+
+	public String getDisplayNameOfDesiredMountService() {
+		return displayNameOfDesiredMountService.getValue();
+	}
+
 	public ObjectProperty<Path> path() {
 		return path;
 	}
@@ -109,6 +119,14 @@ public class VaultSettings {
 
 	public StringExpression mountName() {
 		return mountName;
+	}
+
+	public StringProperty desiredMountService() {
+		return desiredMountService;
+	}
+
+	StringProperty displayNameOfDesiredMountService() {
+		return displayNameOfDesiredMountService;
 	}
 
 	public BooleanProperty unlockAfterStartup() {

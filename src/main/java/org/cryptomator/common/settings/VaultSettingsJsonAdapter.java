@@ -27,6 +27,8 @@ class VaultSettingsJsonAdapter {
 		out.name("displayName").value(value.displayName().get());
 		out.name("unlockAfterStartup").value(value.unlockAfterStartup().get());
 		out.name("revealAfterMount").value(value.revealAfterMount().get());
+		out.name("mountService").value(value.getDesiredMountService());
+		out.name("mountServiceName").value(value.getDisplayNameOfDesiredMountService());
 		var mountPoint = value.mountPoint().get();
 		out.name("mountPoint").value(mountPoint != null ? mountPoint.toAbsolutePath().toString() : null);
 		out.name("usesReadOnlyMode").value(value.usesReadOnlyMode().get());
@@ -45,6 +47,8 @@ class VaultSettingsJsonAdapter {
 		String path = null;
 		String mountName = null; //see https://github.com/cryptomator/cryptomator/pull/1318
 		String displayName = null;
+		String mountService = "";
+		String mountServiceName = "";
 		boolean unlockAfterStartup = VaultSettings.DEFAULT_UNLOCK_AFTER_STARTUP;
 		boolean revealAfterMount = VaultSettings.DEFAULT_REVEAL_AFTER_MOUNT;
 		boolean usesReadOnlyMode = VaultSettings.DEFAULT_USES_READONLY_MODE;
@@ -66,6 +70,8 @@ class VaultSettingsJsonAdapter {
 				case "unlockAfterStartup" -> unlockAfterStartup = in.nextBoolean();
 				case "revealAfterMount" -> revealAfterMount = in.nextBoolean();
 				case "usesReadOnlyMode" -> usesReadOnlyMode = in.nextBoolean();
+				case "mountService" -> mountService = in.nextString();
+				case "mountServiceName" -> mountServiceName = in.nextString();
 				case "mountFlags" -> mountFlags = in.nextString();
 				case "mountPoint" -> {
 					if (JsonToken.NULL == in.peek()) {
@@ -92,6 +98,8 @@ class VaultSettingsJsonAdapter {
 		} else {
 			vaultSettings.displayName().set(mountName);
 		}
+		vaultSettings.desiredMountService().set(mountService);
+		vaultSettings.displayNameOfDesiredMountService().set(mountServiceName);
 		vaultSettings.path().set(Paths.get(path));
 		vaultSettings.unlockAfterStartup().set(unlockAfterStartup);
 		vaultSettings.revealAfterMount().set(revealAfterMount);

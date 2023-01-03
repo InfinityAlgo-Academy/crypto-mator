@@ -5,10 +5,10 @@ import dagger.Module;
 import dagger.Provides;
 import dagger.multibindings.IntoMap;
 import org.cryptomator.ui.common.DefaultSceneFactory;
-import org.cryptomator.ui.common.FxmlLoaderFactory;
 import org.cryptomator.ui.common.FxController;
 import org.cryptomator.ui.common.FxControllerKey;
 import org.cryptomator.ui.common.FxmlFile;
+import org.cryptomator.ui.common.FxmlLoaderFactory;
 import org.cryptomator.ui.common.FxmlScene;
 import org.cryptomator.ui.common.StageFactory;
 
@@ -73,11 +73,6 @@ abstract class PreferencesModule {
 	@IntoMap
 	@FxControllerKey(UpdatesPreferencesController.class)
 	abstract FxController bindUpdatesPreferencesController(UpdatesPreferencesController controller);
-
-	@Binds
-	@IntoMap
-	@FxControllerKey(VolumePreferencesController.class)
-	abstract FxController bindVolumePreferencesController(VolumePreferencesController controller);
 
 	@Binds
 	@IntoMap

@@ -42,7 +42,6 @@ public class SettingsJsonAdapter extends TypeAdapter<Settings> {
 		out.name("checkForUpdatesEnabled").value(value.checkForUpdates().get());
 		out.name("startHidden").value(value.startHidden().get());
 		out.name("autoCloseVaults").value(value.autoCloseVaults().get());
-		out.name("port").value(value.port().get());
 		out.name("numTrayNotifications").value(value.numTrayNotifications().get());
 		out.name("debugMode").value(value.debugMode().get());
 		out.name("theme").value(value.theme().get().name());
@@ -83,7 +82,6 @@ public class SettingsJsonAdapter extends TypeAdapter<Settings> {
 				case "checkForUpdatesEnabled" -> settings.checkForUpdates().set(in.nextBoolean());
 				case "startHidden" -> settings.startHidden().set(in.nextBoolean());
 				case "autoCloseVaults" -> settings.autoCloseVaults().set(in.nextBoolean());
-				case "port" -> settings.port().set(in.nextInt());
 				case "numTrayNotifications" -> settings.numTrayNotifications().set(in.nextInt());
 				case "debugMode" -> settings.debugMode().set(in.nextBoolean());
 				case "theme" -> settings.theme().set(parseUiTheme(in.nextString()));

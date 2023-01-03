@@ -27,14 +27,11 @@ import java.util.function.Consumer;
 
 public class Settings {
 
-	public static final int MIN_PORT = 1024;
-	public static final int MAX_PORT = 65535;
 	public static final boolean DEFAULT_ASKED_FOR_UPDATE_CHECK = false;
 	public static final boolean DEFAULT_CHECK_FOR_UPDATES = false;
 	public static final boolean DEFAULT_START_HIDDEN = false;
 	public static final boolean DEFAULT_AUTO_CLOSE_VAULTS = false;
 	public static final boolean DEFAULT_USE_KEYCHAIN = true;
-	public static final int DEFAULT_PORT = 42427;
 	public static final int DEFAULT_NUM_TRAY_NOTIFICATIONS = 3;
 	public static final boolean DEFAULT_DEBUG_MODE = false;
 	public static final UiTheme DEFAULT_THEME = UiTheme.LIGHT;
@@ -53,7 +50,6 @@ public class Settings {
 	private final BooleanProperty startHidden = new SimpleBooleanProperty(DEFAULT_START_HIDDEN);
 	private final BooleanProperty autoCloseVaults = new SimpleBooleanProperty(DEFAULT_AUTO_CLOSE_VAULTS);
 	private final BooleanProperty useKeychain = new SimpleBooleanProperty(DEFAULT_USE_KEYCHAIN);
-	private final IntegerProperty port = new SimpleIntegerProperty(DEFAULT_PORT);
 	private final IntegerProperty numTrayNotifications = new SimpleIntegerProperty(DEFAULT_NUM_TRAY_NOTIFICATIONS);
 	private final BooleanProperty debugMode = new SimpleBooleanProperty(DEFAULT_DEBUG_MODE);
 	private final ObjectProperty<UiTheme> theme = new SimpleObjectProperty<>(DEFAULT_THEME);
@@ -87,7 +83,6 @@ public class Settings {
 		startHidden.addListener(this::somethingChanged);
 		autoCloseVaults.addListener(this::somethingChanged);
 		useKeychain.addListener(this::somethingChanged);
-		port.addListener(this::somethingChanged);
 		numTrayNotifications.addListener(this::somethingChanged);
 		debugMode.addListener(this::somethingChanged);
 		theme.addListener(this::somethingChanged);
@@ -142,10 +137,6 @@ public class Settings {
 	}
 
 	public BooleanProperty useKeychain() { return useKeychain; }
-
-	public IntegerProperty port() {
-		return port;
-	}
 
 	public IntegerProperty numTrayNotifications() {
 		return numTrayNotifications;

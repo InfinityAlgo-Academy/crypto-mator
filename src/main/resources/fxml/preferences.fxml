@@ -30,14 +30,6 @@
 				<fx:include source="preferences_interface.fxml"/>
 			</content>
 		</Tab>
-		<Tab fx:id="volumeTab" id="VOLUME" text="%preferences.volume">
-			<graphic>
-				<FontAwesome5IconView glyph="HDD"/>
-			</graphic>
-			<content>
-				<fx:include source="preferences_volume.fxml"/>
-			</content>
-		</Tab>
 		<Tab fx:id="updatesTab" id="UPDATES" text="%preferences.updates">
 			<graphic>
 				<FontAwesome5IconView glyph="SYNC"/>

@@ -72,6 +72,8 @@ public class UnlockWorkflow extends Task<Boolean> {
 		}
 	}
 
+	//TODO: handle NoSuchMountServiceException
+
 	private void showInvalidMountPointScene() {
 		Platform.runLater(() -> {
 			window.setScene(invalidMountPointScene.get());

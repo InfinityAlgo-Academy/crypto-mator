@@ -11,6 +11,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import org.cryptomator.ui.controls.NumericTextField?>
 <VBox xmlns:fx="http://javafx.com/fxml"
 	  xmlns="http://javafx.com/javafx"
 	  fx:controller="org.cryptomator.ui.vaultoptions.MountOptionsController"
@@ -22,7 +23,8 @@
 		<Insets topRightBottomLeft="12"/>
 	</padding>
 	<children>
-		<Label text="Options depend on the selected volume provider in the general preferences"/>
+		<Label text="Mount Service"/> <!-- TODO: localize -->
+		<ChoiceBox fx:id="mountServiceSelection" />
 		<CheckBox fx:id="readOnlyCheckbox" text="%vaultOptions.mount.readonly" visible="${controller.readOnlySupported}" managed="${controller.readOnlySupported}"/>
 
 		<VBox visible="${controller.mountFlagsSupported}" managed="${controller.mountFlagsSupported}">
