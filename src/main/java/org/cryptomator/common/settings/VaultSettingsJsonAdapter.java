@@ -8,6 +8,8 @@ package org.cryptomator.common.settings;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
+import org.cryptomator.common.mount.MountUtil;
+import org.cryptomator.integrations.mount.MountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,8 +49,8 @@ class VaultSettingsJsonAdapter {
 		String path = null;
 		String mountName = null; //see https://github.com/cryptomator/cryptomator/pull/1318
 		String displayName = null;
-		String mountService = "";
-		String mountServiceName = "";
+		String mountService = null;
+		String mountServiceName = null;
 		boolean unlockAfterStartup = VaultSettings.DEFAULT_UNLOCK_AFTER_STARTUP;
 		boolean revealAfterMount = VaultSettings.DEFAULT_REVEAL_AFTER_MOUNT;
 		boolean usesReadOnlyMode = VaultSettings.DEFAULT_USES_READONLY_MODE;
@@ -98,7 +100,12 @@ class VaultSettingsJsonAdapter {
 		} else {
 			vaultSettings.displayName().set(mountName);
 		}
-		vaultSettings.desiredMountService().set(mountService);
+		//TODO: test logic
+		if( mountService == null) {
+			vaultSettings.desiredMountService().set(MountService.get().findFirst().map(s -> s.getClass().getName()).orElse(null));
+		} else {
+			vaultSettings.desiredMountService().set(mountService);
+		}
 		vaultSettings.displayNameOfDesiredMountService().set(mountServiceName);
 		vaultSettings.path().set(Paths.get(path));
 		vaultSettings.unlockAfterStartup().set(unlockAfterStartup);
