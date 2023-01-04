@@ -10,6 +10,7 @@ import org.cryptomator.integrations.mount.MountService;
 import org.cryptomator.ui.common.FxController;
 
 import javax.inject.Inject;
+import javafx.beans.binding.Bindings;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -70,7 +71,13 @@ public class MountOptionsController implements FxController {
 		this.mountpointDriveLetterSupported = ObservableUtil.mapWithDefault(mountService, s -> s.hasCapability(MountCapability.MOUNT_AS_DRIVE_LETTER), false);
 		this.mountFlagsSupported = ObservableUtil.mapWithDefault(mountService, s -> s.hasCapability(MountCapability.MOUNT_FLAGS), false);
 		this.readOnlySupported = ObservableUtil.mapWithDefault(mountService, s -> s.hasCapability(MountCapability.READ_ONLY), false);
-		this.defaultMountFlags = ObservableUtil.mapWithDefault(mountService, s -> s.getDefaultMountFlags(), "");
+		this.defaultMountFlags = Bindings.createStringBinding(() -> {
+			if( mountFlagsSupported.getValue()) {
+				return mountService.getValue().getDefaultMountFlags();
+			} else {
+				return "";
+			}
+		}, mountFlagsSupported);
 		this.driveLetter = vault.getVaultSettings().mountPoint().map(p -> isDriveLetter(p) ? p : null);
 		this.directoryPath = vault.getVaultSettings().mountPoint().map(p -> isDriveLetter(p) ? null : p.toString());
 	}
